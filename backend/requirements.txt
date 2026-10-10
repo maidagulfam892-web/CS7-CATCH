@@ -1,7 +1,6 @@
 fastapi
 uvicorn
 pydantic
-ultralytics
-numpy
-pillow
 python-multipart
+pillow
+numpy<2.0.0
