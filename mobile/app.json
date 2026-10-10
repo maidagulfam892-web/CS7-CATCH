@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "CATCH",
+    "slug": "catch-mobile",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "CATCH uses the camera to identify products and fabrics.",
+        "NSLocationWhenInUseUsageDescription": "CATCH uses location for hyper-local coupons and stock."
+      }
+    },
+    "android": {
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "CATCH uses the camera to identify products and fabrics."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#1B4332"
+        }
+      ],
+      "expo-asset"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "replace-with-eas-project-id"
+      }
+    }
+  }
+}
