@@ -23,6 +23,9 @@ app.add_middleware(
 
 app.include_router(api_router, prefix=settings.api_prefix)
 
+@app.get("/")
+def root():
+    return {"status": "ok", "message": "CATCH Cloud API is running"}
 
 @app.get("/health")
 async def health() -> dict[str, str]:
