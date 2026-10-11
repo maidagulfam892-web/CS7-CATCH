@@ -18,11 +18,19 @@ async function catchFetch(path: string, init: RequestInit = {}) {
 
 export async function predictImage(uri: string): Promise<PredictResponse> {
   const form = new FormData();
-  form.append("file", {
-    uri,
-    name: "capture.jpg",
-    type: "image/jpeg",
-  } as unknown as Blob);
+
+  if (uri.startsWith('data:') || uri.startsWith('blob:')) {
+    const res = await fetch(uri);
+    const blob = await res.blob();
+    form.append("file", blob, "capture.jpg");
+  } else {
+    form.append("file", {
+      uri,
+      name: "capture.jpg",
+      type: "image/jpeg",
+    } as unknown as Blob);
+  }
+
   form.append("include_fabric", "true");
   return catchFetch("/predict", { method: "POST", body: form });
 }

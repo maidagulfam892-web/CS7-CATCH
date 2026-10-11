@@ -8,17 +8,28 @@ from app.core.config import get_settings
 settings = get_settings()
 
 app = FastAPI(
-    title="CATCH Cloud API",
-    description="Inference, fabric analysis, coupons, and try-on overlays.",
+    title="CATCH Cloud Platform API",
+    description="""
+    ### 🚀 Contextual Automated Tailoring & Coupon Hub (CATCH)
+    
+    Yeh CATCH project ka core cloud backend engine hai, jo edge-client aur AI modules ko connect karta hai.
+    
+    * **Inference & Detection:** Smart clothing aur object tracking.
+    * **Fabric Analysis:** Advanced texture aur material recognition.
+    * **Smart Coupons:** Dynamic pricing aur adaptive discount engine.
+    * **Virtual Try-On:** Real-time overlay rendering pipeline.
+    """,
     version=__version__,
+    docs_url="/docs",
+    redoc_url="/redoc"
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.origin_list,
-    allow_credentials=False,
-    allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["Authorization", "Content-Type", "X-API-Key"],
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(api_router, prefix=settings.api_prefix)
